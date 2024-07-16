@@ -38,9 +38,7 @@ func scan(protocol string, hostname string, maxWorkers int) []int {
 }
 
 func createScannerWorker(protocol string, hostname string, ports <-chan int, openedPorts chan<- int, wg *sync.WaitGroup) {
-	//id := rand.Int()
 	defer wg.Done()
-	//defer fmt.Printf("%d Закончил\n", id)
 	// Тут на самом деле хорошо будет видно, что го рантайм хорошо распределяет значения между подписчиками, примерно равномерно порты будут распределяться
 	// Горутины воркеров будут читать канал пока он не опустеет и закроется
 	for port := range ports {
